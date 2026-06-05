@@ -7,6 +7,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${SITE.url}${link.href}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
-    priority: link.href === "/" ? 1 : 0.7,
+    priority: link.href === "#" ? 1 : 0.7,
   }));
 }
