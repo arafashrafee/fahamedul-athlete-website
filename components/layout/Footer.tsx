@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { NAV_LINKS, SOCIAL_LINKS, SITE } from "@/lib/constants";
 
 export function Footer() {
@@ -24,12 +23,12 @@ export function Footer() {
             <ul className="space-y-3">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link
+                  <a
                     href={l.href}
                     className="text-sm text-muted hover:text-primary transition-colors"
                   >
                     {l.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

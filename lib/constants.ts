@@ -11,14 +11,14 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Career", href: "/career" },
-  { label: "Highlights", href: "/highlights" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Achievements", href: "/achievements" },
-  { label: "National Team", href: "/national-team" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Career", href: "#career" },
+  { label: "Highlights", href: "#highlights" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Achievements", href: "#achievements" },
+  { label: "National Team", href: "#national-team" },
+  { label: "Contact", href: "#contact" },
 ] as const;
 
 export const SOCIAL_LINKS = [

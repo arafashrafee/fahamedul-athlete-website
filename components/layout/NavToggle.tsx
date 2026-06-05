@@ -1,12 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SOCIAL_LINKS, SITE } from "@/lib/constants";
 import { EASE_HERO, EASE_HOVER, EASE_IN_OUT, DUR, stagger } from "@/lib/animations";
-import { cn } from "@/lib/utils";
 
 const itemVariants = {
   hidden: { opacity: 0, x: 48 },
@@ -19,12 +16,6 @@ const itemVariants = {
 
 export function NavToggle() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  /* Close on route change. */
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   /* Escape closes; body scroll locks via Lenis. */
   useEffect(() => {
@@ -122,19 +113,13 @@ export function NavToggle() {
                 animate="visible"
                 className="flex-1 flex flex-col justify-center px-7 md:px-10"
               >
-                {NAV_LINKS.map((link, i) => {
-                  const active = pathname === link.href;
-                  return (
+                {NAV_LINKS.map((link, i) => (
                     <div key={link.href} className="overflow-hidden">
                       <motion.div variants={itemVariants}>
-                        <Link
+                        <a
                           href={link.href}
-                          className={cn(
-                            "group flex items-baseline gap-5 md:gap-7 py-2.5 md:py-3 transition-colors",
-                            active
-                              ? "text-primary"
-                              : "text-text hover:text-primary",
-                          )}
+                          onClick={() => setOpen(false)}
+                          className="group flex items-baseline gap-5 md:gap-7 py-2.5 md:py-3 transition-colors text-text hover:text-primary"
                         >
                           <span className="label-sm text-faint group-hover:text-primary transition-colors w-6 shrink-0">
                             {String(i + 1).padStart(2, "0")}
@@ -145,17 +130,10 @@ export function NavToggle() {
                           >
                             {link.label}
                           </span>
-                          {active && (
-                            <motion.span
-                              layoutId="nav-active-dot"
-                              className="ml-auto w-2 h-2 rounded-full bg-primary"
-                            />
-                          )}
-                        </Link>
+                        </a>
                       </motion.div>
                     </div>
-                  );
-                })}
+                ))}
               </motion.nav>
 
               <footer className="px-7 md:px-10 py-6 border-t border-border">
