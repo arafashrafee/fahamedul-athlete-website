@@ -1,0 +1,46 @@
+import type { CareerEntry } from "@/types";
+
+export const CAREER: CareerEntry[] = [
+  {
+    id: "mohammedan",
+    club: "Mohammedan SC",
+    league: "Bangladesh Premier League",
+    country: "Bangladesh",
+    yearStart: 2024,
+    yearEnd: "Present",
+    appearances: 22,
+    goals: 14,
+    notes: "Top scorer in domestic league.",
+  },
+  {
+    id: "bashundhara",
+    club: "Bashundhara Kings",
+    league: "Bangladesh Premier League",
+    country: "Bangladesh",
+    yearStart: 2022,
+    yearEnd: 2024,
+    appearances: 41,
+    goals: 16,
+    notes: "Back-to-back league title contributor.",
+  },
+  {
+    id: "saif",
+    club: "Saif Sporting Club",
+    league: "Bangladesh Premier League",
+    country: "Bangladesh",
+    yearStart: 2020,
+    yearEnd: 2022,
+    appearances: 36,
+    goals: 8,
+  },
+  {
+    id: "youth",
+    club: "BFF Academy",
+    country: "Bangladesh",
+    yearStart: 2018,
+    yearEnd: 2020,
+    appearances: 28,
+    goals: 12,
+    notes: "Developmental years; called up to U-20.",
+  },
+];
