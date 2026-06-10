@@ -24,10 +24,15 @@
   --color-border: #1f1f1f;
   --color-border-strong: #2a2a2a;
 
-  /* Primary accent — crimson red */
-  --color-primary: #e11d48;
-  --color-primary-light: #fb7185;
-  --color-primary-dark: #9f1239;
+  /* Primary accent — vibrant red */
+  --color-primary: #e93a3b;
+  --color-primary-light: #f06b6c;
+  --color-primary-dark: #b71c1c;
+
+  /* Glow tokens */
+  --glow-primary: 0 0 20px rgba(233, 58, 59, 0.4), 0 0 5px rgba(233, 58, 59, 0.6);
+  --glow-primary-sm: 0 0 10px rgba(233, 58, 59, 0.35), 0 0 3px rgba(233, 58, 59, 0.5);
+  --glow-primary-lg: 0 0 40px rgba(233, 58, 59, 0.35), 0 0 80px rgba(233, 58, 59, 0.15), 0 0 6px rgba(233, 58, 59, 0.55);
 
   /* Bangladesh green — restrict to NationalTeam section.
      The flag's red is the brand primary; no separate bd-red. */
@@ -116,7 +121,8 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans), system-ui, sans-serif;
   font-feature-settings: "kern" 1, "calt" 1, "ss01" 1, "cv11" 1;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
@@ -141,7 +147,7 @@ body {
 /* Generic display flag — for unscoped headings. */
 .font-display {
   font-family: var(--font-display), Impact, "Helvetica Neue", sans-serif;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   font-feature-settings: "tnum" 1, "lnum" 1, "kern" 1;
 }
 
@@ -159,47 +165,48 @@ body {
 .display-2xl {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(5rem, 17vw, 18rem);
-  line-height: 0.82;
-  letter-spacing: -0.025em;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 
 .display-xl {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(4rem, 13vw, 13rem);
-  line-height: 0.85;
-  letter-spacing: -0.02em;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
 }
 
 .display-lg {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.014em;
+  line-height: 0.95;
+  letter-spacing: 0.015em;
   text-transform: uppercase;
 }
 
 .display-md {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(2.25rem, 5vw, 4.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.008em;
+  line-height: 1.0;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .display-sm {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  line-height: 1;
-  letter-spacing: -0.005em;
+  line-height: 1.08;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
 }
 
 .display-xs {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(1.25rem, 2vw, 1.875rem);
-  line-height: 1.05;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -208,23 +215,24 @@ body {
 .stat-xl {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(3rem, 7vw, 6rem);
-  line-height: 1;
-  letter-spacing: -0.012em;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
 .stat-lg {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(2.25rem, 4.5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.008em;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
 .stat-md {
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  line-height: 1;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums lining-nums;
 }
 
@@ -232,33 +240,36 @@ body {
 
 .body-lg {
   font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
-  line-height: 1.55;
-  letter-spacing: -0.005em;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
   color: var(--color-muted);
 }
 
 .body {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
   color: var(--color-muted);
 }
 
 .body-sm {
   font-size: 0.875rem;
-  line-height: 1.55;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   color: var(--color-muted);
 }
 
 .body-xs {
   font-size: 0.8125rem;
-  line-height: 1.5;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
   color: var(--color-muted);
 }
 
 .lead {
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-  line-height: 1.45;
-  letter-spacing: -0.01em;
+  line-height: 1.65;
+  letter-spacing: 0.005em;
   color: var(--color-text);
   font-weight: 300;
 }
@@ -268,35 +279,114 @@ body {
 .label-lg {
   font-family: var(--font-mono), monospace;
   font-size: 0.75rem;       /* 12px */
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.3;
 }
 
 .label {
   font-family: var(--font-mono), monospace;
   font-size: 0.6875rem;     /* 11px */
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.3;
 }
 
 .label-sm {
   font-family: var(--font-mono), monospace;
   font-size: 0.625rem;      /* 10px */
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.3;
 }
 
-/* Eyebrow = label-lg coloured gold for section intros. */
+/* Eyebrow = label-lg coloured for section intros. */
 .eyebrow {
   font-family: var(--font-mono), monospace;
   font-size: 0.75rem;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.3;
   color: var(--color-primary);
+}
+
+/* ---------- Glow utilities ---------- */
+
+.glow {
+  box-shadow: var(--glow-primary);
+}
+.glow-sm {
+  box-shadow: var(--glow-primary-sm);
+}
+.glow-lg {
+  box-shadow: var(--glow-primary-lg);
+}
+.glow-text {
+  text-shadow: 0 0 18px rgba(233, 58, 59, 0.45), 0 0 36px rgba(233, 58, 59, 0.18), 0 0 4px rgba(233, 58, 59, 0.6);
+}
+.glow-text-sm {
+  text-shadow: 0 0 10px rgba(233, 58, 59, 0.4), 0 0 3px rgba(233, 58, 59, 0.5);
+}
+
+/* ============================================================
+   CYBER BUTTON — HUD frame
+   ------------------------------------------------------------
+   Angular sci-fi plate: 45° corner cuts (top-left / bottom-right)
+   plus a stepped notch on the opposite edges, like layered HUD
+   chrome. Built from two stacked clipped layers:
+
+     .btn-cyber        → un-clipped host; carries the drop-shadow
+                         glow (box-shadow would be clipped away)
+     .btn-cyber-shape  → the shared clip polygon; outer layer is
+                         the 1px neon "border", inner inset layer
+                         is the fill
+     .btn-cyber-scan   → light sweep across the fill on hover
+   ============================================================ */
+
+.btn-cyber {
+  position: relative;
+  isolation: isolate;
+  filter: drop-shadow(0 0 6px rgba(233, 58, 59, 0.16));
+  transition: filter 0.4s var(--ease-out-expo);
+}
+
+.btn-cyber:hover,
+.btn-cyber:focus-visible {
+  filter: drop-shadow(0 0 10px rgba(233, 58, 59, 0.45))
+    drop-shadow(0 0 30px rgba(233, 58, 59, 0.18));
+}
+
+.btn-cyber-shape {
+  clip-path: polygon(
+    14px 0,
+    calc(100% - 36px) 0,
+    calc(100% - 29px) 7px,
+    100% 7px,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    36px 100%,
+    29px calc(100% - 7px),
+    0 calc(100% - 7px),
+    0 14px
+  );
+}
+
+.btn-cyber-scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.9s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.btn-cyber:hover .btn-cyber-scan {
+  transform: translateX(130%);
 }
 
 /* ---------- Helpers ---------- */

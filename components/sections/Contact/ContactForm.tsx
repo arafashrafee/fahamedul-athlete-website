@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "submitting" | "sent" | "error";
 
@@ -28,19 +28,17 @@ export function ContactForm() {
       <Field label="Organization" name="org" />
       <Field label="Message" name="message" textarea required />
 
-      <motion.button
+      <Button
         type="submit"
         disabled={status === "submitting"}
-        whileHover={{ y: -2 }}
-        whileTap={{ y: 0 }}
-        className="mt-2 inline-flex items-center justify-center gap-2 label-lg px-7 py-4 rounded-full bg-primary text-midnight hover:bg-primary-light disabled:opacity-50 transition-colors"
+        className="mt-2 disabled:opacity-50"
       >
         {status === "submitting"
           ? "Sending…"
           : status === "sent"
             ? "Received — Thank you"
             : "Send Inquiry"}
-      </motion.button>
+      </Button>
     </form>
   );
 }

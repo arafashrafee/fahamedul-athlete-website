@@ -1,4 +1,4 @@
-import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
+import { Bebas_Neue, Chakra_Petch, JetBrains_Mono } from "next/font/google";
 
 export const fontDisplay = Bebas_Neue({
   weight: ["400"],
@@ -7,7 +7,8 @@ export const fontDisplay = Bebas_Neue({
   display: "swap",
 });
 
-export const fontSans = Inter({
+export const fontSans = Chakra_Petch({
+  weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",

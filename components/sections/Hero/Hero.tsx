@@ -25,13 +25,14 @@ export function Hero() {
         <HeroBackdrop />
       </motion.div>
 
-      {/* Top + bottom gradient overlay for cinematic feel */}
+      {/* Top + bottom + left gradient overlays for cinematic feel */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-midnight/60 via-midnight/0 to-midnight" />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-midnight via-transparent to-transparent" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-midnight/20 to-midnight/70 md:to-midnight/60" />
 
       <motion.div
         style={{ y: contentY, opacity }}
-        className="relative z-10 h-full container-page flex flex-col justify-end pb-20 sm:pb-24"
+        className="relative z-10 h-full container-page flex items-end justify-start pb-24 sm:pb-28"
       >
         <HeroContent />
       </motion.div>

@@ -15,8 +15,8 @@ export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Career", href: "#career" },
   { label: "Highlights", href: "#highlights" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Achievements", href: "#achievements" },
+  { label: "Story", href: "#story" },
+  { label: "Press", href: "#press" },
   { label: "National Team", href: "#national-team" },
   { label: "Contact", href: "#contact" },
 ] as const;

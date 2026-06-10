@@ -48,7 +48,7 @@ export function AchievementCard({ achievement }: { achievement: Achievement }) {
           </p>
         )}
 
-        <span className="absolute left-0 bottom-0 h-px w-0 bg-primary transition-all duration-700 group-hover:w-full" />
+        <span className="absolute left-0 bottom-0 h-px w-0 bg-primary transition-all duration-700 group-hover:w-full group-hover:shadow-[0_0_10px_rgba(233,58,59,0.35)]" />
       </article>
     </CardHover>
   );

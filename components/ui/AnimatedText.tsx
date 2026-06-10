@@ -36,7 +36,7 @@ export function AnimatedText({
       {words.map((word, i) => (
         <span
           key={`${word}-${i}`}
-          className="inline-block overflow-hidden align-bottom"
+          className="inline-block overflow-hidden align-bottom mr-[0.25em] last:mr-0"
           aria-hidden
         >
           <motion.span

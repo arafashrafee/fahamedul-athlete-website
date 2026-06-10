@@ -10,6 +10,7 @@ export const CAREER: CareerEntry[] = [
     yearEnd: "Present",
     appearances: 22,
     goals: 14,
+    image: "/images/gallery/g4.jpg",
     notes: "Top scorer in domestic league.",
   },
   {
@@ -21,6 +22,7 @@ export const CAREER: CareerEntry[] = [
     yearEnd: 2024,
     appearances: 41,
     goals: 16,
+    image: "/images/gallery/g3.jpg",
     notes: "Back-to-back league title contributor.",
   },
   {
@@ -32,6 +34,7 @@ export const CAREER: CareerEntry[] = [
     yearEnd: 2022,
     appearances: 36,
     goals: 8,
+    image: "/images/gallery/g5.jpg",
   },
   {
     id: "youth",
@@ -41,6 +44,7 @@ export const CAREER: CareerEntry[] = [
     yearEnd: 2020,
     appearances: 28,
     goals: 12,
+    image: "/images/gallery/g6.jpg",
     notes: "Developmental years; called up to U-20.",
   },
 ];

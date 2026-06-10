@@ -8,6 +8,10 @@ export const GALLERY: GalleryItem[] = [
   { id: "g1", src: "/images/gallery/g1.jpg", alt: "Sampdoria youth — matchday", aspect: "landscape" },
   { id: "g2", src: "/images/gallery/g2.jpg", alt: "International duel vs Hong Kong", aspect: "landscape" },
   { id: "g3", src: "/images/gallery/g3.jpg", alt: "National team — running on", aspect: "portrait" },
+  { id: "g4", src: "/images/gallery/g4.jpg", alt: "Bangladesh national team lineup", aspect: "landscape" },
+  { id: "g5", src: "/images/gallery/g5.jpg", alt: "Off the pitch — hotel mirror", aspect: "portrait" },
+  { id: "g6", src: "/images/gallery/g6.jpg", alt: "Training session — on the pitch", aspect: "portrait" },
+  { id: "g7", src: "/images/gallery/g7.jpg", alt: "Match day — full sprint", aspect: "portrait" },
 ];
 
 /**

@@ -42,7 +42,7 @@ export function NavToggle() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: DUR.section, delay: 0.4, ease: EASE_HERO }}
-        className="fixed top-5 right-5 md:top-7 md:right-7 z-[80] w-14 h-14 rounded-full border border-border-strong bg-midnight/70 backdrop-blur-md hover:border-primary transition-colors flex items-center justify-center"
+        className="fixed top-3 right-5 md:right-7 z-[80] w-14 h-14 rounded-full border border-border-strong bg-midnight/70 backdrop-blur-md hover:border-primary transition-all flex items-center justify-center hover:shadow-[0_0_10px_rgba(233,58,59,0.35)]"
       >
         <span className="relative w-5 h-4 flex flex-col items-center justify-center">
           <motion.span

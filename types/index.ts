@@ -14,6 +14,7 @@ export type CareerEntry = {
   appearances: number;
   goals: number;
   logo?: string;
+  image?: string;
   notes?: string;
 };
 

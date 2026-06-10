@@ -6,6 +6,7 @@ import { NavToggle } from "@/components/layout/NavToggle";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { PageTransitionShell } from "@/components/layout/PageTransitionShell";
+import { AppShell } from "@/components/layout/AppShell";
 import { PersonJsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
@@ -61,15 +62,17 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-midnight text-text font-sans antialiased">
         <PersonJsonLd />
-        <LenisProvider>
-          <ScrollProgress />
-          <Header />
-          <NavToggle />
-          <main className="relative">
-            <PageTransitionShell>{children}</PageTransitionShell>
-          </main>
-          <Footer />
-        </LenisProvider>
+        <AppShell>
+          <LenisProvider>
+            <ScrollProgress />
+            <Header />
+            <NavToggle />
+            <main className="relative">
+              <PageTransitionShell>{children}</PageTransitionShell>
+            </main>
+            <Footer />
+          </LenisProvider>
+        </AppShell>
       </body>
     </html>
   );

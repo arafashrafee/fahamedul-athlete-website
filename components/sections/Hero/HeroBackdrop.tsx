@@ -27,12 +27,12 @@ export function HeroBackdrop() {
           priority
           sizes="100vw"
           quality={90}
-          className="object-cover object-center"
+          className="object-cover object-[40%_center] md:object-[35%_center]"
         />
       </motion.div>
 
       {/* Cinematic vignette + tone */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,transparent_0%,rgba(7,7,7,0.45)_55%,#070707_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_45%,transparent_0%,rgba(7,7,7,0.45)_55%,#070707_100%)]" />
       <div
         className="absolute inset-0 opacity-40 mix-blend-multiply"
         style={{
