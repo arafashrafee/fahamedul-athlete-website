@@ -18,7 +18,7 @@ export function HeroContent() {
       </motion.div>
 
       <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
-        <ButtonLink href="#identity" variant="primary">
+        <ButtonLink href="#story" variant="primary">
           Story
         </ButtonLink>
         <ButtonLink href="#contact" variant="ghost">
