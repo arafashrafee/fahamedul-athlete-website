@@ -77,7 +77,7 @@ export function Story() {
         {/* Header */}
         <div className="flex items-end justify-between gap-6 mb-14 md:mb-20">
           <AnimatedText
-            text="Latest Stories."
+            text="Features."
             as="h2"
             className="display-md text-text"
           />

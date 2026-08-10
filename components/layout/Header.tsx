@@ -34,10 +34,12 @@ export function Header() {
           : "bg-transparent border-b border-transparent",
       )}
     >
-      <div className="container-page flex items-center justify-between h-[var(--header-h)]">
+      {/* Full-bleed row: brand pinned to the far left, matching the
+          fixed NavToggle's inset on the far right. */}
+      <div className="w-full flex items-center justify-between h-[var(--header-h)] pl-5 md:pl-7 pr-24 md:pr-28">
         <Link
           href="/"
-          className="pointer-events-auto font-display text-xl tracking-widest text-text hover:text-primary transition-colors"
+          className="pointer-events-auto font-display text-2xl md:text-3xl tracking-widest text-text hover:text-primary transition-colors"
           aria-label={`${SITE.name} — Home`}
         >
           {SITE.shortName.toUpperCase()}

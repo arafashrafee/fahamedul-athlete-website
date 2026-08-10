@@ -28,6 +28,8 @@
   --color-primary: #e93a3b;
   --color-primary-light: #f06b6c;
   --color-primary-dark: #b71c1c;
+  /* Hover state for buttons — brighter but still pure red, never rose/pink. */
+  --color-primary-bright: #ff2d23;
 
   /* Glow tokens */
   --glow-primary: 0 0 20px rgba(233, 58, 59, 0.4), 0 0 5px rgba(233, 58, 59, 0.6);
@@ -67,6 +69,7 @@
   --color-primary: var(--color-primary);
   --color-primary-light: var(--color-primary-light);
   --color-primary-dark: var(--color-primary-dark);
+  --color-primary-bright: var(--color-primary-bright);
 
   --color-bd-green: var(--color-bd-green);
 
@@ -76,6 +79,7 @@
 
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
+  --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 }
 
@@ -119,10 +123,10 @@ html.lenis body {
 body {
   background: var(--color-midnight);
   color: var(--color-text);
-  font-family: var(--font-sans), system-ui, sans-serif;
-  font-feature-settings: "kern" 1, "calt" 1, "ss01" 1, "cv11" 1;
-  letter-spacing: 0.01em;
-  line-height: 1.7;
+  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  font-feature-settings: "kern" 1, "calt" 1, "liga" 1, "onum" 1;
+  letter-spacing: 0;
+  line-height: 1.75;
   overflow-x: hidden;
 }
 
@@ -238,38 +242,40 @@ body {
 
 /* ---------- BODY scale ---------- */
 
+/* Serif metrics: no tracking, and a touch more size than the old sans
+   needed — a serif at the same px reads smaller. */
 .body-lg {
-  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  font-size: clamp(1.125rem, 1.45vw, 1.3125rem);
   line-height: 1.75;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: var(--color-muted);
 }
 
 .body {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.8;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: var(--color-muted);
 }
 
 .body-sm {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: var(--color-muted);
 }
 
 .body-xs {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.65;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: var(--color-muted);
 }
 
 .lead {
-  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-size: clamp(1.1875rem, 1.65vw, 1.4375rem);
   line-height: 1.65;
-  letter-spacing: 0.005em;
+  letter-spacing: 0;
   color: var(--color-text);
   font-weight: 300;
 }
@@ -340,20 +346,22 @@ body {
      .btn-cyber-shape  → the shared clip polygon; outer layer is
                          the 1px neon "border", inner inset layer
                          is the fill
-     .btn-cyber-scan   → light sweep across the fill on hover
+
+   Hover changes colour and glow only — the plate never moves.
+   Glow is pure red (255,45,35), not the rose tint.
    ============================================================ */
 
 .btn-cyber {
   position: relative;
   isolation: isolate;
-  filter: drop-shadow(0 0 6px rgba(233, 58, 59, 0.16));
+  filter: drop-shadow(0 0 6px rgba(255, 45, 35, 0.18));
   transition: filter 0.4s var(--ease-out-expo);
 }
 
 .btn-cyber:hover,
 .btn-cyber:focus-visible {
-  filter: drop-shadow(0 0 10px rgba(233, 58, 59, 0.45))
-    drop-shadow(0 0 30px rgba(233, 58, 59, 0.18));
+  filter: drop-shadow(0 0 8px rgba(255, 45, 35, 0.55))
+    drop-shadow(0 0 18px rgba(255, 45, 35, 0.3));
 }
 
 .btn-cyber-shape {
@@ -371,22 +379,55 @@ body {
   );
 }
 
-.btn-cyber-scan {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.28) 50%,
-    transparent 60%
-  );
-  transform: translateX(-130%);
-  transition: transform 0.9s var(--ease-out-expo);
-  pointer-events: none;
+/* ============================================================
+   CYBER BADGE — HUD chip
+   ------------------------------------------------------------
+   Small sibling of .btn-cyber: 45° cuts on the top-left /
+   bottom-right corners, 1px neon edge, faint scanline fill.
+   Same two-layer trick — clip-path would eat a real border, so
+   the outer layer IS the border and the inset layer is the fill.
+   Edge + dot inherit `currentColor`, so variants only set text.
+   ============================================================ */
+
+.badge-cyber {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  transition: filter 0.4s var(--ease-out-expo);
 }
 
-.btn-cyber:hover .btn-cyber-scan {
-  transform: translateX(130%);
+.badge-cyber:hover {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.badge-cyber-shape {
+  clip-path: polygon(
+    7px 0,
+    100% 0,
+    100% calc(100% - 7px),
+    calc(100% - 7px) 100%,
+    0 100%,
+    0 7px
+  );
+}
+
+.badge-cyber-scan {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.045) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* Status tick — square, not round; glows in the variant colour. */
+.badge-cyber-dot {
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  box-shadow: 0 0 5px currentColor;
 }
 
 /* ---------- Helpers ---------- */

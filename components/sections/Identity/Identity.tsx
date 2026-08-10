@@ -20,8 +20,7 @@ export function Identity() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-midnight/70 via-transparent to-transparent pointer-events-none" />
 
-            <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
-              <span className="font-display text-3xl text-text">FI</span>
+            <div className="absolute bottom-6 left-6 right-6 flex justify-end items-end z-10">
               <span className="label-sm text-text">
                 Portrait · 2025
               </span>

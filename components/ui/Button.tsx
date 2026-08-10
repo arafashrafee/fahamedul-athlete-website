@@ -16,14 +16,14 @@ const base =
 
 /* Outer clipped layer — reads as the 1px neon border. */
 const frame: Record<Variant, string> = {
-  primary: "bg-primary group-hover:bg-primary-light",
+  primary: "bg-primary group-hover:bg-primary-bright",
   ghost: "bg-border-strong group-hover:bg-primary",
-  outline: "bg-primary group-hover:bg-primary-light",
+  outline: "bg-primary group-hover:bg-primary-bright",
 };
 
 /* Inner clipped layer — the plate fill. */
 const fill: Record<Variant, string> = {
-  primary: "bg-primary group-hover:bg-primary-light",
+  primary: "bg-primary group-hover:bg-primary-bright",
   ghost: "bg-midnight/60 backdrop-blur-sm",
   outline: "bg-midnight group-hover:bg-primary/10",
 };
@@ -52,9 +52,7 @@ function CyberSkin({ variant }: { variant: Variant }) {
           "btn-cyber-shape absolute inset-[1.5px] -z-10 overflow-hidden transition-colors duration-300",
           fill[variant],
         )}
-      >
-        <span className="btn-cyber-scan" />
-      </span>
+      />
 
       {/* Corner bracket — top-left, echoes the 45° cut */}
       <span
@@ -75,7 +73,7 @@ function CyberSkin({ variant }: { variant: Variant }) {
       {/* Detached accent line — floats under the bottom-left edge */}
       <span
         aria-hidden
-        className="absolute left-4 -bottom-[7px] h-[2px] w-2/5 bg-primary/80 glow-sm transition-all duration-300 group-hover:w-3/5 group-hover:bg-primary"
+        className="absolute left-4 -bottom-[7px] h-[2px] w-2/5 bg-primary/80 glow-sm transition-colors duration-300 group-hover:bg-primary"
       />
 
       {/* Edge stud — tiny square on the stepped right shelf */}

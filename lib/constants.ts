@@ -10,15 +10,20 @@ export const SITE = {
   twitter: "@fahamedul",
 } as const;
 
+/**
+ * Menu order mirrors the homepage section order. Anchors are
+ * root-relative ("/#about") so they still resolve when the menu is
+ * opened from a standalone route.
+ */
 export const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Career", href: "#career" },
-  { label: "Highlights", href: "#highlights" },
-  { label: "Story", href: "#story" },
-  { label: "Press", href: "#press" },
-  { label: "National Team", href: "#national-team" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Career Highlights", href: "/#career-highlights" },
+  { label: "Career", href: "/#career" },
+  { label: "Features", href: "/#story" },
+  { label: "Press", href: "/#press" },
+  { label: "Social Media", href: "/#social" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const SOCIAL_LINKS = [

@@ -8,7 +8,7 @@ export function Contact() {
     <section id="contact" className="section relative bg-midnight">
       <div className="container-page grid gap-16 md:grid-cols-2 md:gap-20 items-start">
         <div className="flex flex-col gap-8">
-          <span className="eyebrow">06 · Connect</span>
+          <span className="eyebrow">Connect</span>
           <AnimatedText
             text="For bookings, press &amp; partnerships."
             as="h2"

@@ -1,14 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const FIRST_NAME = "FAHAMEDUL";
 
+/* `gap` is the space between FAHAMEDUL and the slot. It lives here rather
+   than inline so the hidden measuring pass can mirror the rendered pair
+   exactly — the measurement is what keeps each state centred. */
 const SLOT_ITEMS = [
-  { key: "islam", text: "ISLAM", className: "text-text" },
-  { key: "nineteen", text: "19", className: "text-primary" },
-  { key: "dot", text: ".", className: "text-primary" },
+  { key: "islam", text: "ISLAM", className: "text-text", gap: "0.18em" },
+  { key: "nineteen", text: "19", className: "text-primary", gap: "0.18em" },
+  { key: "dot", text: ".", className: "text-primary", gap: "0.04em" },
 ] as const;
 
 const SLIDE_DURATION = 0.7;
@@ -44,7 +47,43 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
   }, [phase]);
 
   const slotItem = SLOT_ITEMS[slotIndex];
-  const isDot = slotItem.key === "dot";
+
+  /* Each slot word is a different width, so a fixed-width slot leaves slack
+     on the right and the pair drifts off-centre. Measure every variant, size
+     the slot to the widest, then slide the row by half the leftover so the
+     visible text — not the box — is what sits centred. */
+  const measureRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [widths, setWidths] = useState<number[] | null>(null);
+
+  useLayoutEffect(() => {
+    /* Rects exclude margin, and the gap before the slot is a margin — so it
+       has to be added back or the widest variant gets clipped. */
+    const measure = () =>
+      setWidths(
+        measureRefs.current.map((el) =>
+          el
+            ? el.getBoundingClientRect().width +
+              parseFloat(getComputedStyle(el).marginLeft || "0")
+            : 0,
+        ),
+      );
+
+    measure();
+    /* Bebas Neue swaps in after first paint, and the size is vw-based. */
+    let cancelled = false;
+    void document.fonts?.ready.then(() => {
+      if (!cancelled) measure();
+    });
+    window.addEventListener("resize", measure);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  const maxWidth = widths?.length ? Math.max(...widths) : 0;
+  const slotWidth = maxWidth ? `${maxWidth}px` : "3.4em";
+  const recentre = widths?.length ? (maxWidth - widths[slotIndex]) / 2 : 0;
 
   return (
     <AnimatePresence onExitComplete={onComplete}>
@@ -92,11 +131,42 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
             transition={{ duration: 1.2, ease: "easeInOut" }}
           />
 
-          {/* Name row: [cycling slot] FAHAMEDUL */}
+          {/* Name row: FAHAMEDUL [cycling slot] */}
           <div className="relative select-none">
+            {/* Hidden twin of the slot, one span per variant — the only job
+                is to report each rendered width. */}
             <div
+              aria-hidden
+              className="absolute top-0 left-0 flex font-display leading-none tracking-[0.04em] invisible pointer-events-none whitespace-nowrap"
+              style={{ fontSize: FONT_SIZE }}
+            >
+              {SLOT_ITEMS.map((item, i) => (
+                <span
+                  key={item.key}
+                  ref={(el) => {
+                    measureRefs.current[i] = el;
+                  }}
+                  className="block"
+                  style={{ marginLeft: item.gap }}
+                >
+                  {item.text}
+                </span>
+              ))}
+            </div>
+
+            <motion.div
               className="flex items-end font-display leading-none tracking-[0.04em]"
               style={{ fontSize: FONT_SIZE }}
+              animate={{ x: recentre }}
+              /* mode="wait" below means the outgoing word slides away first.
+                 Holding the re-centre back by one slide keeps that word
+                 centred on its way out, then moves the pair in step with the
+                 incoming one. */
+              transition={{
+                duration: SLIDE_DURATION,
+                ease: SLIDE_EASE,
+                delay: SLIDE_DURATION,
+              }}
             >
               {/* FAHAMEDUL — static, single fade-in */}
               <motion.div
@@ -108,20 +178,23 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
                 {FIRST_NAME}
               </motion.div>
 
-              {/* Cycling slot: ISLAM -> 19 -> "." — fixed width so FAHAMEDUL never shifts */}
+              {/* Cycling slot: ISLAM -> 19 -> "." — sized to the widest variant
+                  so FAHAMEDUL never shifts mid-slide; the row above cancels
+                  the leftover slack. */}
               <div
                 className="relative overflow-hidden flex justify-start"
-                style={{ width: "3.4em", height: "1.15em" }}
+                style={{ width: slotWidth, height: "1.15em" }}
               >
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={slotItem.key}
                     className={`relative block self-end leading-none ${slotItem.className}`}
-                    style={
-                      isDot
-                        ? { top: "0.06em", marginLeft: "0.04em" }
-                        : { marginLeft: "0.18em" }
-                    }
+                    /* No vertical nudge: the slot span shares FAHAMEDUL's
+                       font, size, and line-height, so aligning their box
+                       bottoms aligns their baselines exactly. Any offset
+                       here pushes the glyph past the slot's overflow-hidden
+                       edge and clips it. */
+                    style={{ marginLeft: slotItem.gap }}
                     initial={{ y: "120%" }}
                     animate={{ y: "0%" }}
                     exit={{ y: "-120%" }}
@@ -135,7 +208,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
                   </motion.span>
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
 
             {/* Glow pulse on name after assembly */}
             <motion.div

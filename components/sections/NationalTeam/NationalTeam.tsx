@@ -88,9 +88,7 @@ export function NationalTeam() {
       </div>
 
       <div className="relative container-page section flex flex-col items-start text-left gap-8">
-        <span className="eyebrow">
-          <span className="text-primary">——</span> CONNECT
-        </span>
+        <span className="eyebrow">Social Media</span>
 
         <AnimatedText
           text="Follow the Journey."

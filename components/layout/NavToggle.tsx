@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_LINKS, SOCIAL_LINKS, SITE } from "@/lib/constants";
+import { NAV_LINKS, SITE } from "@/lib/constants";
 import { EASE_HERO, EASE_HOVER, EASE_IN_OUT, DUR, stagger } from "@/lib/animations";
 
 const itemVariants = {
@@ -113,7 +113,7 @@ export function NavToggle() {
                 animate="visible"
                 className="flex-1 flex flex-col justify-center px-7 md:px-10"
               >
-                {NAV_LINKS.map((link, i) => (
+                {NAV_LINKS.map((link) => (
                     <div key={link.href} className="overflow-hidden">
                       <motion.div variants={itemVariants}>
                         <a
@@ -121,9 +121,6 @@ export function NavToggle() {
                           onClick={() => setOpen(false)}
                           className="group flex items-baseline gap-5 md:gap-7 py-2.5 md:py-3 transition-colors text-text hover:text-primary"
                         >
-                          <span className="label-sm text-faint group-hover:text-primary transition-colors w-6 shrink-0">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
                           <span
                             className="font-display leading-[0.95] tracking-tight"
                             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
@@ -136,22 +133,6 @@ export function NavToggle() {
                 ))}
               </motion.nav>
 
-              <footer className="px-7 md:px-10 py-6 border-t border-border">
-                <div className="label-sm text-faint mb-4">CONNECT</div>
-                <div className="flex flex-wrap gap-x-6 gap-y-3">
-                  {SOCIAL_LINKS.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="label text-muted hover:text-primary transition-colors"
-                    >
-                      {s.label}
-                    </a>
-                  ))}
-                </div>
-              </footer>
             </motion.aside>
           </>
         )}

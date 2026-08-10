@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { fontDisplay, fontSans, fontMono } from "@/styles/fonts";
+import { fontDisplay, fontSans, fontBody, fontMono } from "@/styles/fonts";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Header } from "@/components/layout/Header";
 import { NavToggle } from "@/components/layout/NavToggle";
@@ -57,10 +57,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontDisplay.variable} ${fontSans.variable} ${fontMono.variable}`}
+      className={`${fontDisplay.variable} ${fontSans.variable} ${fontBody.variable} ${fontMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-midnight text-text font-sans antialiased">
+      <body className="min-h-screen bg-midnight text-text font-body antialiased">
         <PersonJsonLd />
         <AppShell>
           <LenisProvider>

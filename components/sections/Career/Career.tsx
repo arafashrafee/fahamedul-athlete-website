@@ -9,7 +9,7 @@ export function Career() {
       <div className="container-page">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
           <div className="flex flex-col gap-4">
-            <span className="eyebrow">01 · Career</span>
+            <span className="eyebrow">Career</span>
             <AnimatedText
               text="Clubs &amp; Chapters."
               as="h2"

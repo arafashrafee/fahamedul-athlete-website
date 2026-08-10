@@ -8,7 +8,9 @@ interface Article {
   id: string;
   tag: string;
   tagColor?: string;
-  date: string;
+  /** Publication date — omitted for evergreen profile pages. */
+  date?: string;
+  source: string;
   title: string;
   excerpt: string;
   image: string;
@@ -18,47 +20,46 @@ interface Article {
 const FEATURED: Article = {
   id: "p1",
   tag: "FEATURED",
-  date: "May 2024",
-  title: "Fahamedul Shines in World Cup Qualifier with Crucial Performance",
+  date: "9 October 2025",
+  source: "The Daily Star",
+  title: "Bangladesh start without Shamit, Fahamedul against Hong Kong, China",
   excerpt:
-    "A masterclass display against Lebanon highlighted Fahamedul's growing influence as Bangladesh's creative engine in the World Cup qualifying campaign.",
+    "Fahamedul Islam and Shamit Shome were kept out of the starting eleven for Bangladesh's 2026 Asian Cup qualifier against Hong Kong, China at the National Stadium in Dhaka.",
   image: "/images/gallery/g4.jpg",
-  href: "#",
+  href: "https://www.thedailystar.net/sports/football/news/bangladesh-start-without-shamit-fahamedul-against-hong-kong-china-4005811",
 };
 
 const ARTICLES: Article[] = [
   {
     id: "p2",
-    tag: "DOMESTIC",
-    tagColor: "#E9393B",
-    date: "Mar 2024",
-    title: "Sampdoria's Bangladeshi Gem Continues to Impress in Training",
+    tag: "NATIONAL TEAM",
+    date: "28 May 2025",
+    source: "Somoy News",
+    title: "Fahamedul arrives in Dhaka for Asian Cup qualifying match",
     excerpt:
-      "Coaches praise Fahamedul's dedication and rapid development at the Italian club's youth setup.",
+      "The Italy-based forward landed in Dhaka to join the national camp ahead of Bangladesh's Asian Cup qualifier against Singapore on 10 June.",
     image: "/images/gallery/g1.jpg",
-    href: "#",
+    href: "https://en.somoynews.tv/news/2025-05-28/6XKG54X5",
   },
   {
     id: "p3",
-    tag: "FEATURE",
-    tagColor: "#E9393B",
-    date: "Jan 2024",
-    title: "Rising Star: How Fahamedul Islam Is Changing Bangladeshi Football",
+    tag: "PROFILE",
+    source: "BeSoccer",
+    title: "Fahamedul Islam — Player Profile",
     excerpt:
-      "An in-depth look at the midfielder's journey from grassroots to international recognition and European interest.",
+      "Squad data and season records for the Bangladesh international, listed at Italian club Olbia Calcio in Serie D.",
     image: "/images/gallery/g6.jpg",
-    href: "#",
+    href: "https://www.besoccer.com/player/fahamedul-islam-3273716",
   },
   {
     id: "p4",
-    tag: "NATIONAL TEAM",
-    tagColor: "#E9393B",
-    date: "Nov 2023",
-    title: "Bangladesh Squad Announcement: Fahamedul Named in Asian Cup Roster",
+    tag: "PROFILE",
+    source: "Transfermarkt",
+    title: "Fahamedul Islam — Transfermarkt Profile",
     excerpt:
-      "The young midfielder earns his place in the squad for the biggest tournament in Asian football.",
+      "Career record, transfer history, and market valuation tracked across his club and international appearances.",
     image: "/images/gallery/g7.jpg",
-    href: "#",
+    href: "https://www.transfermarkt.com/fahamedul-islam/profil/spieler/987443",
   },
 ];
 
@@ -68,10 +69,7 @@ export function Press() {
       <div className="container-page">
         {/* Header */}
         <div className="flex flex-col items-center text-center gap-4 mb-16 md:mb-20">
-          <span className="eyebrow">
-            <span className="text-primary">——</span> PRESS{" "}
-            <span className="text-primary">——</span>
-          </span>
+          <span className="eyebrow">Press</span>
           <AnimatedText
             text="Latest Stories."
             as="h2"
@@ -86,6 +84,8 @@ export function Press() {
         <RevealOnScroll>
           <a
             href={FEATURED.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group grid md:grid-cols-2 gap-0 border border-white/[0.06] rounded-lg overflow-hidden mb-8 md:mb-12 transition-all duration-500 hover:border-white/[0.12]"
           >
             <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden">
@@ -106,7 +106,7 @@ export function Press() {
                   {FEATURED.date}
                 </span>
                 <span className="px-2 py-0.5 border border-primary/40 text-primary text-[10px] font-mono uppercase tracking-[0.15em] rounded-sm">
-                  INTERNATIONAL
+                  {FEATURED.source}
                 </span>
               </div>
               <h3 className="font-display text-xl md:text-2xl lg:text-3xl tracking-[0.05em] text-text leading-tight mb-4 group-hover:text-primary transition-colors duration-500">
@@ -128,6 +128,8 @@ export function Press() {
             <RevealOnScroll key={article.id} delay={i * 0.08}>
               <a
                 href={article.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex flex-col overflow-hidden"
               >
                 <div className="relative aspect-[16/10] overflow-hidden rounded-lg">
@@ -147,7 +149,8 @@ export function Press() {
                 </div>
                 <div className="pt-5 flex flex-col gap-2">
                   <span className="text-[11px] font-mono text-faint tracking-wide">
-                    {article.date}
+                    {article.source}
+                    {article.date ? ` · ${article.date}` : ""}
                   </span>
                   <h4 className="font-display text-sm md:text-base tracking-[0.05em] text-text leading-snug group-hover:text-primary transition-colors duration-500">
                     {article.title.toUpperCase()}

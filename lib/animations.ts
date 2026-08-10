@@ -185,11 +185,9 @@ export const HOVER_RETURN: Transition = {
 
 /* Shadow strings animated by Framer. Crimson-tinted to match brand. */
 const SHADOW_REST =
-  "0px 0px 0px rgba(0,0,0,0), 0px 0px 0px rgba(225,29,72,0)";
+  "0px 0px 0px rgba(0,0,0,0), 0px 0px 0px rgba(255,45,35,0)";
 const SHADOW_CARD =
   "0px 28px 56px -22px rgba(0,0,0,0.65), 0px 0px 60px -16px rgba(225,29,72,0.22)";
-const SHADOW_BUTTON =
-  "0px 14px 32px -14px rgba(0,0,0,0.55), 0px 0px 36px -10px rgba(225,29,72,0.35)";
 
 /**
  * HOVER_VARIANTS — three intensities. All share the same enter
@@ -232,19 +230,12 @@ export const HOVER_VARIANTS = {
       transition: HOVER_ENTER,
     },
   },
+  /* Buttons stay put and cast no box glow — a box-shadow would trace
+     the wrapper rectangle, not the clipped HUD plate. Their glow is a
+     drop-shadow filter on .btn-cyber, which follows the real shape. */
   button: {
-    rest: {
-      y: 0,
-      scale: 1,
-      boxShadow: SHADOW_REST,
-      transition: HOVER_RETURN,
-    },
-    hover: {
-      y: -3,
-      scale: 1.04,
-      boxShadow: SHADOW_BUTTON,
-      transition: HOVER_ENTER,
-    },
+    rest: {},
+    hover: {},
   },
 } as const;
 
