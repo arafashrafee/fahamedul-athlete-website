@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 import { EASE_HERO, DUR } from "@/lib/animations";
 
 /**
- * Slim, scroll-aware top bar — brand wordmark + status caption.
- * Navigation now lives in <NavToggle /> (right drawer); this header
+ * Slim, scroll-aware top bar — brand wordmark only.
+ * Navigation lives in <NavToggle /> (right drawer); this header
  * just anchors the brand and frames the page on scroll.
  */
 export function Header() {
@@ -45,10 +45,6 @@ export function Header() {
           {SITE.shortName.toUpperCase()}
           <span className="text-primary">.</span>
         </Link>
-
-        <span className="pointer-events-auto label-sm text-faint hidden sm:inline">
-          BANGLADESH · FORWARD
-        </span>
       </div>
     </motion.header>
   );

@@ -63,7 +63,10 @@ export function ClubCard({ entry, index, side }: Props) {
           {/* Text block */}
           <div className="p-5 md:p-6 flex flex-col gap-2.5">
             <span className="label-sm text-primary tracking-[0.3em]">
-              {entry.yearStart} — {entry.yearEnd}
+              {/* Single-season spells read "2024", not "2024 — 2024". */}
+              {entry.yearEnd === entry.yearStart
+                ? entry.yearStart
+                : `${entry.yearStart} — ${entry.yearEnd}`}
             </span>
 
             <h3

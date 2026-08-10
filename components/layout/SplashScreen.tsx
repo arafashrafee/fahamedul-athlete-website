@@ -14,8 +14,16 @@ const SLOT_ITEMS = [
   { key: "dot", text: ".", className: "text-primary", gap: "0.04em" },
 ] as const;
 
-const SLIDE_DURATION = 0.7;
-const HOLD_MS = 1200;
+/* Every slot gets an identical STATE_MS beat, measured change-to-change:
+   FAHAMEDUL ISLAM, FAHAMEDUL 19 and FAHAMEDUL. each own 2.5s. Inside that
+   beat the outgoing word slides out and the incoming one slides in
+   (2 x SLIDE_DURATION), leaving 1.5s of stillness before the next swap.
+
+     3 x STATE_MS 2500 = 7500ms + GLOW_MS 400 + EXIT_DURATION 500 = 8.4s */
+const SLIDE_DURATION = 0.5;
+const STATE_MS = 2500;
+const GLOW_MS = 400;
+const EXIT_DURATION = 0.5;
 const SLIDE_EASE = [0.16, 1, 0.3, 1] as const;
 
 const FONT_SIZE = "clamp(2.25rem, 7.5vw, 6.5rem)";
@@ -25,8 +33,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<"cycle" | "glow" | "exit">("cycle");
 
   // Advance the slot: ISLAM -> 19 -> ".", then hand off to the glow phase.
-  // mode="wait" below means each swap costs an exit + an enter, so the
-  // timer covers both slides plus the hold.
+  // One flat STATE_MS per slot keeps the three beats evenly spaced.
   useEffect(() => {
     if (phase !== "cycle") return;
     const timer = setTimeout(() => {
@@ -35,13 +42,13 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
       } else {
         setPhase("glow");
       }
-    }, SLIDE_DURATION * 2 * 1000 + HOLD_MS);
+    }, STATE_MS);
     return () => clearTimeout(timer);
   }, [slotIndex, phase]);
 
   useEffect(() => {
     if (phase === "glow") {
-      const exitTimer = setTimeout(() => setPhase("exit"), 1100);
+      const exitTimer = setTimeout(() => setPhase("exit"), GLOW_MS);
       return () => clearTimeout(exitTimer);
     }
   }, [phase]);
@@ -91,7 +98,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
         <motion.div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-midnight overflow-hidden"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: EXIT_DURATION, ease: [0.4, 0, 0.2, 1] }}
         >
           {/* Ambient particles */}
           <div className="absolute inset-0 pointer-events-none">
@@ -128,7 +135,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
               scale: phase === "glow" ? [1, 1.3, 1.1] : 1,
               opacity: phase === "glow" ? [0.5, 1, 0.8] : 0.3,
             }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            transition={{ duration: GLOW_MS / 1000, ease: "easeInOut" }}
           />
 
           {/* Name row: FAHAMEDUL [cycling slot] */}
@@ -173,7 +180,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
                 className="text-text"
                 initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.9, ease: SLIDE_EASE }}
+                transition={{ duration: 0.6, ease: SLIDE_EASE }}
               >
                 {FIRST_NAME}
               </motion.div>
@@ -201,7 +208,9 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
                     transition={{
                       duration: SLIDE_DURATION,
                       ease: SLIDE_EASE,
-                      delay: slotIndex === 0 ? 0.5 : 0,
+                      /* First word waits for FAHAMEDUL to land; the rest
+                         follow the outgoing word immediately. */
+                      delay: slotIndex === 0 ? 0.25 : 0,
                     }}
                   >
                     {slotItem.text}
@@ -220,7 +229,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
               animate={
                 phase === "glow" ? { opacity: [0, 1, 0.6] } : { opacity: 0 }
               }
-              transition={{ duration: 1, ease: "easeInOut" }}
+              transition={{ duration: GLOW_MS / 1000, ease: "easeInOut" }}
             />
           </div>
 
@@ -229,7 +238,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
             className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"
             initial={{ scaleX: 0 }}
             animate={phase === "glow" ? { scaleX: 1 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: GLOW_MS / 1000, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformOrigin: "center" }}
           />
         </motion.div>

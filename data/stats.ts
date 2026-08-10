@@ -1,15 +1,18 @@
 import type { Stat, NationalTeamStats } from "@/types";
 
+/* Totals derived from the career table in data/career.ts:
+   goals 1 (Olbia) + 1 (U-23) + 4 (Sampdoria U-18) = 6
+   clubs Olbia, Livorno, SC Ligorna 1922, Sampdoria U-18, Spezia Youth = 5 */
 export const KEY_STATS: Stat[] = [
-  { label: "National Caps", value: 12 },
-  { label: "Career Goals", value: 38 },
-  { label: "Clubs", value: 4 },
-  { label: "Years Pro", value: 6 },
+  { label: "Senior Caps", value: 6 },
+  { label: "Career Goals", value: 6 },
+  { label: "Clubs", value: 5 },
+  { label: "Years Pro", value: 2 },
 ];
 
 export const NATIONAL_TEAM: NationalTeamStats = {
-  caps: 12,
-  goals: 3,
-  debutDate: "2023-03-22",
-  debutOpponent: "Seychelles",
+  caps: 6,
+  goals: 0,
+  debutDate: "2025-06",
+  debutOpponent: "",
 };

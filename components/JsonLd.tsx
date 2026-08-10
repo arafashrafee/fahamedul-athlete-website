@@ -10,12 +10,17 @@ export function PersonJsonLd() {
     nationality: SITE.nationality,
     url: SITE.url,
     description: SITE.description,
-    knowsAbout: ["Football", "Soccer", "Bangladesh Premier League"],
-    memberOf: {
-      "@type": "SportsTeam",
-      name: "Bangladesh National Football Team",
-    },
-    award: ["Bangladesh Premier League Champion 2023", "BPL Top Scorer 2025"],
+    knowsAbout: ["Football", "Soccer", "Serie D"],
+    memberOf: [
+      {
+        "@type": "SportsTeam",
+        name: "Bangladesh National Football Team",
+      },
+      {
+        "@type": "SportsTeam",
+        name: "Olbia Calcio 1905",
+      },
+    ],
     additionalProperty: [
       {
         "@type": "PropertyValue",

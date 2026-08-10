@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ButtonLink } from "@/components/ui/Button";
-import { stagger, wordReveal, fadeUp } from "@/lib/animations";
-
-const NAME = ["FAHAMEDUL", "ISLAM"];
+import { HeroTypewriter } from "./HeroTypewriter";
+import { stagger, fadeUp } from "@/lib/animations";
 
 export function HeroContent() {
   return (
@@ -12,8 +11,12 @@ export function HeroContent() {
       initial="hidden"
       animate="visible"
       variants={stagger(0.4, 0.12)}
-      className="flex flex-col gap-4 items-start"
+      className="flex flex-col gap-6 items-start"
     >
+      <motion.div variants={fadeUp}>
+        <HeroTypewriter />
+      </motion.div>
+
       <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
         <ButtonLink href="#identity" variant="primary">
           Story

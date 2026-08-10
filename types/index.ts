@@ -11,8 +11,9 @@ export type CareerEntry = {
   country: string;
   yearStart: number;
   yearEnd: number | "Present";
-  appearances: number;
-  goals: number;
+  /** "—" for spells where no official tally is published (youth academy). */
+  appearances: number | "—";
+  goals: number | "—";
   logo?: string;
   image?: string;
   notes?: string;

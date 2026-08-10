@@ -35,49 +35,57 @@ export function Identity() {
             <Badge variant="primary">Forward</Badge>
             <Badge variant="green">Bangladesh</Badge>
             <Badge>Right Foot</Badge>
-            <Badge>5&apos;11&quot;</Badge>
+            <Badge>1.70 m</Badge>
           </div>
 
           <span className="eyebrow">The Athlete</span>
 
           <AnimatedText
             as="h2"
-            text="Made in Bangladesh. Forged for the world stage."
+            text="Fahamedul Islam"
             className="display-md text-text text-balance"
             stagger={0.06}
           />
 
           <div className="space-y-5 max-w-xl text-muted text-base leading-relaxed">
             <p>
-              From the dusty pitches of Bangladesh to the floodlights of
-              international football, Fahamedul Islam has built his game on
-              relentless work and quiet ambition.
+              A Bangladeshi boy grew up in the coastal city of La Spezia, Italy,
+              where his football journey began. Through years of dedication in
+              Italian football, he turned a childhood dream into reality, rising
+              through the ranks to become a professional player and proving that
+              talent and perseverance know no borders.
             </p>
             <p>
-              A forward defined by movement, instinct, and finishing in tight
-              spaces — and a generational opportunity to lift his country&apos;s
-              football into a new era.
+              His journey in Italy eventually earned him recognition from the
+              Bangladesh National Team. Although his first senior call-up in
+              March 2025 didn&apos;t lead to a debut, he refused to give up. A
+              second opportunity came in May, and in June 2025, he proudly
+              stepped onto the pitch in the red and green. Since then, he has
+              continued to represent Bangladesh while building a career in
+              Europe.
             </p>
           </div>
+
+          <span className="eyebrow">The Journey</span>
 
           <div className="grid grid-cols-3 gap-6 pt-6 border-t border-border">
             <div>
               <div className="label-sm text-faint mb-2">
                 Born
               </div>
-              <div className="font-display text-2xl">DHAKA</div>
+              <div className="font-display text-2xl">FENI</div>
             </div>
             <div>
               <div className="label-sm text-faint mb-2">
                 Age
               </div>
-              <div className="font-display text-2xl">22</div>
+              <div className="font-display text-2xl">19</div>
             </div>
             <div>
               <div className="label-sm text-faint mb-2">
                 Position
               </div>
-              <div className="font-display text-2xl">CF</div>
+              <div className="font-display text-2xl">LW</div>
             </div>
           </div>
         </RevealOnScroll>
